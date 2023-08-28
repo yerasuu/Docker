@@ -28,8 +28,10 @@ RUN if [ -n "$PYTHON_VERSION" ]; then \
 ARG RUST_VERSION
 RUN if [ -n "$RUST_VERSION" ]; then \
         curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain ${RUST_VERSION} -y; \
-        echo 'export PATH="/root/.cargo/bin:${PATH}"' >> /root/.bashrc; \
     fi
+	
+# Add Rust binaries to the PATH
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Install Node.js if version is provided
 ARG NODE_VERSION
